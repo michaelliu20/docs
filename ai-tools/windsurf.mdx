@@ -28,11 +28,12 @@ Kafka has access to a comprehensive set of tools that enable it to complete real
 
 ## How Tools Work
 
-Tools extend Kafka's capabilities beyond conversation. When you give Kafka an instruction, it automatically selects and uses the appropriate tools to complete the task.
+When you give Kafka an instruction, it automatically selects and uses the appropriate tools to complete the task end-to-end.
 
-For example:
+**Examples:**
 - "Find 10 software engineers in San Francisco" → Uses **People Search**
-- "Message this candidate" → Uses **Browser** automation
-- "Call the nearest pizza shop" → Uses **Phone Call**
+- "Message this candidate on LinkedIn" → Uses **Browser** automation
+- "Call the nearest pizza shop and order a large pepperoni" → Uses **Phone Call**
+- "Scrape all pricing from competitor websites" → Uses **Web Scrape**
 
-Tools are referenced in Workflows and Playbooks to create powerful automations.
+Tools can be explicitly referenced in Workflows and Playbooks using their names.

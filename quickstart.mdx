@@ -109,9 +109,8 @@ This ensures your Kafka Employee consistently operates with the right framing.
 
 ## Step 4: Add Integrations
 
-Integrations connect your Kafka Employee with the tools and data sources it needs.
-
-Go to: **My Kafka → Integrations**
+1. Go to: **My Kafka → Integrations**
+2. Connect Google Calendar
 
 <img
   src="/images/Integrations.gif"
@@ -159,26 +158,27 @@ Add Slack as a connection method to enable:
 - Team collaboration with your AI Employee
 
 <img
-  src="/images/slack message.gif"
+  src="/images/Slack Message.gif"
   alt="Messaging Kafka in Slack"
   className="rounded-lg border border-gray-200 dark:border-gray-800"
 />
 
 ## Step 6: Build Workflows
 
-Workflows run on a trigger, which can be:
-
-- **App-based** — triggered by events in connected tools (e.g., new email, calendar event)
-- **Time-based** — triggered on a schedule (e.g., daily at 9am, weekly on Monday)
-- **Webhook-based** — triggered by external API calls
+Workflows are automated sequences that Kafka runs autonomously when triggered.
 
 <img
   src="/images/Workflow Editing.gif"
-  alt="Kafka Workflows Interface"
+  alt="Creating a workflow in Kafka"
   className="rounded-lg border border-gray-200 dark:border-gray-800"
 />
 
-Once triggered, Kafka performs a set of instructions you define, executing actions autonomously without manual intervention.
+**Workflow triggers:**
+- **Time-based** — daily at 9am, weekly on Monday, hourly between 9am-5pm
+- **App-based** — new email in Gmail, new candidate in Greenhouse, Slack keyword mention
+- **Webhook-based** — external API calls, form submissions, payment events
+
+Once triggered, Kafka executes your instructions automatically without manual intervention.
 
 <Tabs>
   <Tab title="Executive Assistant">
@@ -216,9 +216,9 @@ Once triggered, Kafka performs a set of instructions you define, executing actio
 
 ## Step 7: Create Playbooks
 
-Playbooks are structured guides that Kafka follows for repeated, semi-structured tasks. They're otherwise known as SOPs (standard operating procedures).
+Playbooks are structured guides for repeated, semi-structured tasks — your AI Employee's SOPs (standard operating procedures).
 
-Every playbook has an **Activation Criteria** — a situation that, when encountered, prompts Kafka to use the playbook. Playbooks can also be explicitly requested by name or by using `@` inside text editors.
+Unlike Workflows which run fully autonomously, Playbooks are designed for tasks that need human collaboration or oversight.
 
 <img
   src="/images/Playbook Usage.gif"
@@ -288,16 +288,14 @@ Every playbook has an **Activation Criteria** — a situation that, when encount
 
 ## Step 8: Test and Refine
 
-Once your Kafka Employee is live, treat Playbooks and Workflows as living documents that need constant iteration.
+Your AI Employee improves through iteration. Start using it in real scenarios, observe performance, and refine:
 
-The best approach:
+1. **Deploy in real use** — Use Kafka for actual work, not just testing
+2. **Observe performance** — Notice where Kafka excels or struggles  
+3. **Refine instructions** — Adjust Global Instructions, Workflows, and Playbooks
+4. **Iterate weekly** — Small, frequent improvements compound quickly
 
-1. **Deploy in real use** — Start using your AI Employee in actual work scenarios
-2. **Observe and collect feedback** — Notice where Kafka struggles or excels
-3. **Refine instructions** — Adjust Global Instructions, Workflows, and Playbooks based on real performance
-4. **Iterate continuously** — Your AI Employee improves with each refinement
-
-Don't expect perfection on the first try. The most effective AI Employees are refined over weeks of real-world use.
+The best AI Employees are refined over weeks of real-world use. Don't expect perfection immediately.
 
 ## Get Support
 
