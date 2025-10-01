@@ -1,94 +1,166 @@
 ---
-title: 'Development'
-description: 'Preview changes locally to update your docs'
+title: 'Best Practices'
+hideTitle: true
 ---
 
-<Info>
-  **Prerequisites**:
-  - Node.js version 19 or higher
-  - A docs repository with a `docs.json` file
-</Info>
+Best practices for deploying and using Kafka effectively in your organization.
 
-Follow these steps to install and run Mintlify on your operating system.
+## Start Small, Scale Gradually
 
-<Steps>
-<Step title="Install the Mintlify CLI">
+**Begin with one use case**
 
-```bash
-npm i -g mint
-```
-</Step>
+Don't try to automate everything at once. Pick one high-value, repetitive task and build a single AI Employee around it.
 
-<Step title="Preview locally">
+Good first use cases:
+- Daily email summaries
+- Candidate pipeline updates
+- Task syncing between tools
 
-Navigate to your docs directory where your `docs.json` file is located, and run the following command:
+**Expand after validation**
 
-```bash
-mint dev
-```
+Once your first AI Employee proves valuable, add more workflows and playbooks. Then consider creating additional AI Employees for different roles.
 
-A local preview of your documentation will be available at `http://localhost:3000`.
+## Define Clear Boundaries
 
-</Step>
-</Steps>
+**Set explicit escalation rules**
 
-## Custom ports
+In Global Instructions, specify exactly when Kafka should ask for human input vs. proceeding autonomously.
 
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. For example, to run Mintlify on port 3333, use this command:
-
-```bash
-mint dev --port 3333
+```text
+Escalate to me if:
+- Financial decisions over $500
+- Candidate has competing offers
+- Project timeline changes by more than 1 week
 ```
 
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
+**Use activation criteria thoughtfully**
 
-```md
-Port 3000 is already in use. Trying 3001 instead.
+Make playbook triggers specific enough to activate when needed, but not so broad they fire constantly.
+
+## Iterate Based on Real Use
+
+**Deploy, observe, refine**
+
+Treat your AI Employee as a living system:
+1. Deploy in real work scenarios
+2. Monitor how Kafka performs
+3. Adjust Global Instructions, Workflows, and Playbooks
+4. Repeat weekly
+
+**Track what works**
+
+Keep notes on:
+- Which workflows save the most time
+- Which playbooks get used most often
+- Where Kafka struggles or needs clarification
+
+## Give Kafka Context
+
+**Be specific in instructions**
+
+Bad: "Check my calendar"
+Good: "Check my @google-calendar for conflicts between 2-4pm tomorrow"
+
+Bad: "Find candidates"
+Good: "Use @apollo to find 10 software engineers in San Francisco with 5+ years React experience"
+
+**Provide examples**
+
+In Global Instructions and Playbooks, show Kafka what good output looks like.
+
+```text
+When summarizing emails, format like this:
+• [Sender] - [Topic] - [Action needed]
+• John Smith - Q4 Budget - Needs approval by Friday
 ```
 
-## Mintlify versions
+## Use the Right Tool for the Job
 
-Please note that each CLI release is associated with a specific version of Mintlify. If your local preview does not align with the production version, please update the CLI:
+**Workflows** → Fully autonomous, recurring tasks
+- Daily summaries
+- Scheduled reports
+- Event-driven notifications
 
-```bash
-npm mint update
-```
+**Playbooks** → Semi-structured tasks needing consistency
+- Standard procedures
+- Quality-controlled processes
+- Repeatable formats
 
-## Validating links
+**Direct conversation** → One-off requests
+- Ad-hoc questions
+- Non-repeatable tasks
+- Exploratory work
 
-The CLI can assist with validating links in your documentation. To identify any broken links, use the following command:
+## Enable Team Adoption
 
-```bash
-mint broken-links
-```
+**Add Kafka to relevant Slack channels**
 
-## Deployment
+Put Kafka where the work happens. If your team discusses recruiting in `#hiring`, add your Recruiter AI Employee there.
 
-If the deployment is successful, you should see the following:
+**Document your AI Employees**
 
-<Frame>
-  <img src="/images/checks-passed.png" alt="Screenshot of a deployment confirmation message that says All checks have passed." style={{ borderRadius: '0.5rem' }} />
-</Frame>
+Keep a simple doc explaining:
+- What each AI Employee does
+- How to interact with it
+- When to use workflows vs. asking directly
+- Escalation protocols
 
-## Code formatting
+**Gather team feedback**
 
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
+Your team will discover edge cases and improvement opportunities. Create a channel for feedback.
 
-## Troubleshooting
+## Security & Privacy
 
-<AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
+**Grant minimum necessary permissions**
 
-    This may be due to an outdated version of node. Try the following:
-    1. Remove the currently-installed version of the CLI: `npm remove -g mint`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall the CLI: `npm i -g mint`
-  </Accordion>
+When connecting integrations, give Kafka only the access it needs for its specific role.
 
-  <Accordion title="Issue: Encountering an unknown error">
-  
-    Solution: Go to the root of your device and delete the `~/.mintlify` folder. Then run `mint dev` again.
-  </Accordion>
-</AccordionGroup>
+**Review sensitive data handling**
 
-Curious about what changed in the latest CLI version? Check out the [CLI changelog](https://www.npmjs.com/package/mintlify?activeTab=versions).
+In Global Instructions, specify how Kafka should handle:
+- Confidential information
+- Personal data
+- Financial information
+- Customer data
+
+**Use private channels for sensitive work**
+
+For AI Employees handling confidential information, use private Slack channels with restricted access.
+
+## Measure Impact
+
+Track these metrics:
+- **Time saved** — Hours per week your team gains back
+- **Tasks automated** — Number of manual tasks Kafka handles
+- **Response time** — How quickly Kafka completes requests
+- **Error rate** — How often Kafka needs correction
+
+Adjust your approach based on what delivers the most value.
+
+## Common Pitfalls to Avoid
+
+**Over-automating too quickly**
+
+Don't automate complex processes before validating simple ones.
+
+**Vague instructions**
+
+"Handle my email" won't work well. "Scan @gmail daily at 9am for emails from clients and summarize urgent ones" will.
+
+**Ignoring feedback loops**
+
+If Kafka makes the same mistake repeatedly, update Global Instructions or the relevant Playbook.
+
+**Forgetting to update integrations**
+
+As your stack changes, keep Kafka's connected tools current.
+
+## Getting Help
+
+We're actively supporting early customers.
+
+**Email:** [michael@usebrainbase.xyz](mailto:michael@usebrainbase.xyz)
+
+**In-app support:** Use the support widget for quick questions
+
+Share your use cases and challenges — your feedback shapes the product.

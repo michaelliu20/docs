@@ -1,59 +1,92 @@
 ---
-title: 'Images and embeds'
-description: 'Add image, video, and other HTML elements'
-icon: 'image'
+title: 'Global Instructions'
+hideTitle: true
 ---
 
+Global Instructions define your AI Employee's role, personality, and foundational rules. They're included in every conversation Kafka has.
+
 <img
-  style={{ borderRadius: '0.5rem' }}
-  src="https://mintlify-assets.b-cdn.net/bigbend.jpg"
+  src="/images/Kafka Global Instructions.png"
+  alt="Global Instructions template"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
 />
 
-## Image
+## What Global Instructions Include
 
-### Using Markdown
+**Job Description**
+Define what your AI Employee does and its primary responsibilities.
 
-The [markdown syntax](https://www.markdownguide.org/basic-syntax/#images) lets you add images using the following code
-
-```md
-![title](/path/image.jpg)
+```text
+You are my AI Executive Assistant. Manage my calendar, email, and daily tasks.
 ```
 
-Note that the image file size must be less than 5MB. Otherwise, we recommend hosting on a service like [Cloudinary](https://cloudinary.com/) or [S3](https://aws.amazon.com/s3/). You can then use that URL and embed.
+**Integrations**
+List which tools your AI Employee has access to.
 
-### Using embeds
-
-To get more customizability with images, you can also use [embeds](/writing-content/embed) to add images
-
-```html
-<img height="200" src="/path/image.jpg" />
+```text
+You have access to: @gmail, @google-calendar, @slack
 ```
 
-## Embeds and HTML elements
+**Context & Rules**
+Provide important context Kafka should always know.
 
-<iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/4KzFe50RQkQ"
-  title="YouTube video player"
-  frameBorder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-  style={{ width: '100%', borderRadius: '0.5rem' }}
-></iframe>
-
-<br />
-
-<Tip>
-
-Mintlify supports [HTML tags in Markdown](https://www.markdownguide.org/basic-syntax/#html). This is helpful if you prefer HTML tags to Markdown syntax, and lets you create documentation with infinite flexibility.
-
-</Tip>
-
-### iFrames
-
-Loads another HTML page within the document. Most commonly used for embedding videos.
-
-```html
-<iframe src="https://www.youtube.com/embed/4KzFe50RQkQ"> </iframe>
+```text
+I work in Pacific Time. I prefer brief, actionable summaries. Never schedule meetings before 9am or after 5pm.
 ```
+
+**Tone & Style**
+Define how Kafka should communicate.
+
+```text
+Be professional but friendly. Use bullet points for lists. Keep responses concise.
+```
+
+**Escalation Rules**
+Specify when Kafka should ask for human input.
+
+```text
+Escalate any financial decisions over $1,000. Defer to me for strategic planning decisions.
+```
+
+## Example Global Instructions
+
+```text
+You are my AI Recruiter.
+
+You have access to: @apollo, @greenhouse
+
+I'm hiring for software engineering roles in San Francisco. Our company values 
+collaboration and technical excellence. Never send outreach before I approve the message.
+
+Be professional and conversational in all communications. Keep candidate interactions 
+warm but efficient.
+
+Escalate to me if: candidate has competing offers, salary expectations exceed budget, 
+or candidate requests to speak with founder.
+```
+
+## Best Practices
+
+**Be specific about role and boundaries**
+Clearly define what your AI Employee should and shouldn't do.
+
+**Include relevant context**
+Add company info, working hours, preferences, and constraints that apply to all tasks.
+
+**Set clear escalation rules**
+Define when Kafka should ask for human input vs. proceeding autonomously.
+
+**Keep it concise**
+Global Instructions should fit in 1-2 paragraphs. Use Playbooks for detailed procedures.
+
+**Update as you learn**
+Refine Global Instructions based on how Kafka performs in real use.
+
+## Tips
+
+- **Test changes incrementally** — Update one section at a time and observe the impact
+- **Use examples** — "Respond like: [example]" is clearer than "Be professional"
+- **Specify tools** — List integrations so Kafka knows what's available
+- **Set working hours** — Prevent off-hours actions if needed
+
+Global Instructions are the foundation of your AI Employee. The clearer they are, the better Kafka performs.

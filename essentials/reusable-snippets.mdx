@@ -1,110 +1,91 @@
 ---
-title: "Reusable snippets"
-description: "Reusable, custom snippets to keep content in sync"
-icon: "recycle"
+title: 'Integrations'
+hideTitle: true
 ---
 
-import SnippetIntro from '/snippets/snippet-intro.mdx';
+Connect Kafka to your existing tools and data sources, allowing your AI Employee to take action across your tech stack.
 
-<SnippetIntro />
+<img
+  src="/images/Integrations.gif"
+  alt="Browsing Kafka integrations"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
+/>
 
-## Creating a custom snippet
+## How Integrations Work
 
-**Pre-condition**: You must create your snippet file in the `snippets` directory.
+Kafka uses **Pipedream** to power integrations. When you connect an integration using OAuth, Kafka acts as you — gaining the same access and permissions you have in that tool.
 
-<Note>
-  Any page in the `snippets` directory will be treated as a snippet and will not
-  be rendered into a standalone page. If you want to create a standalone page
-  from the snippet, import the snippet into another file and call it as a
-  component.
-</Note>
+This means:
+- Kafka can read your emails in Gmail
+- Create tasks in ClickUp under your account
+- Send Slack messages as you
+- Search for candidates in Apollo with your credentials
 
-### Default export
+Once connected, reference integrations in workflows, playbooks, and conversations using the `@` symbol:
 
-1. Add content to your snippet file that you want to re-use across multiple
-   locations. Optionally, you can add variables that can be filled in via props
-   when you import the snippet.
-
-```mdx snippets/my-snippet.mdx
-Hello world! This is my content I want to reuse across pages. My keyword of the
-day is {word}.
+```text
+@gmail — Access your email
+@slack — Send messages and read channels
+@clickup — Create and manage tasks
+@apollo — Search for people and companies
 ```
 
-<Warning>
-  The content that you want to reuse must be inside the `snippets` directory in
-  order for the import to work.
-</Warning>
+Kafka automatically uses the appropriate integration based on your instructions.
 
-2. Import the snippet into your destination file.
+## Example Usage
 
-```mdx destination-file.mdx
----
-title: My title
-description: My Description
----
+**In a Workflow:**
+```yaml
+name: Daily Task Sync
+trigger: daily at 5 pm
 
-import MySnippet from '/snippets/path/to/my-snippet.mdx';
-
-## Header
-
-Lorem impsum dolor sit amet.
-
-<MySnippet word="bananas" />
+Content:
+1. Scan through @slack for any new action items
+2. Create tasks in @clickup with proper assignments
+3. Send confirmation in @slack thread
 ```
 
-### Reusable variables
+**In a Playbook:**
+```yaml
+name: Schedule Interview
+activation_criteria: When candidate passes initial screen
 
-1. Export a variable from your snippet file:
-
-```mdx snippets/path/to/custom-variables.mdx
-export const myName = 'my name';
-
-export const myObject = { fruit: 'strawberries' };
+Instructions:
+1. Check availability in @google-calendar
+2. Send meeting invite via @gmail
+3. Update candidate status in @greenhouse
+4. Notify hiring manager in @slack
 ```
 
-2. Import the snippet from your destination file and use the variable:
-
-```mdx destination-file.mdx
----
-title: My title
-description: My Description
----
-
-import { myName, myObject } from '/snippets/path/to/custom-variables.mdx';
-
-Hello, my name is {myName} and I like {myObject.fruit}.
+**In Conversation:**
+```text
+"Pull my last 50 emails from @gmail and summarize them"
+"Add this to @clickup as a high-priority task"
+"Search @apollo for software engineers in San Francisco"
 ```
 
-### Reusable components
+## Best Practices
 
-1. Inside your snippet file, create a component that takes in props by exporting
-   your component in the form of an arrow function.
+**Connect only what you need**
+Start with 2-3 core integrations. Add more as your use cases expand.
 
-```mdx snippets/custom-component.mdx
-export const MyComponent = ({ title }) => (
-  <div>
-    <h1>{title}</h1>
-    <p>... snippet content ...</p>
-  </div>
-);
-```
+**Use consistent naming**
+Always use `@integration` format to reference tools in workflows and playbooks.
 
-<Warning>
-  MDX does not compile inside the body of an arrow function. Stick to HTML
-  syntax when you can or use a default export if you need to use MDX.
-</Warning>
+**Set proper permissions**
+Grant Kafka only the access it needs for its specific tasks.
 
-2. Import the snippet into your destination file and pass in the props
+**Test integrations**
+Verify connections work before building complex workflows that depend on them.
 
-```mdx destination-file.mdx
----
-title: My title
-description: My Description
----
+**Monitor usage**
+Check integration logs to ensure Kafka is using tools correctly.
 
-import { MyComponent } from '/snippets/custom-component.mdx';
+## Adding Integrations
 
-Lorem ipsum dolor sit amet.
+1. Go to **My Kafka → Integrations**
+2. Search for the tool you want to connect
+3. Click to authenticate and grant permissions
+4. Reference with `@toolname` in workflows and playbooks
 
-<MyComponent title={'Custom title'} />
-```
+New integrations are added regularly. Contact support if you need a specific tool that's not yet available.

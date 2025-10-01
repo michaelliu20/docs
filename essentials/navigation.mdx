@@ -1,87 +1,62 @@
 ---
-title: 'Navigation'
-description: 'The navigation field in docs.json defines the pages that go in the navigation menu'
-icon: 'map'
+title: 'Concepts'
 ---
 
-The navigation menu is the list of links on every website.
+## Tab
 
-You will likely update `docs.json` every time you add a new page. Pages do not show up automatically.
+The Tab is your primary interface for interacting with Kafka. Each tab represents a separate conversation thread where you can give instructions, receive responses, and monitor ongoing tasks.
 
-## Navigation syntax
+### Key Features
+- **Persistent conversations**: Each tab maintains context across multiple interactions
+- **Real-time updates**: See live progress updates as Kafka works on your tasks
+- **Multi-threading**: Work on multiple projects simultaneously across different tabs
 
-Our navigation syntax is recursive which means you can make nested navigation groups. You don't need to include `.mdx` in page names.
+## Agent
 
-<CodeGroup>
+Kafka operates as an intelligent agent that can understand context, make decisions, and execute complex workflows autonomously. Unlike simple chatbots, Kafka maintains awareness of your business processes and can take meaningful actions.
 
-```json Regular Navigation
-"navigation": {
-  "tabs": [
-    {
-      "tab": "Docs",
-      "groups": [
-        {
-          "group": "Getting Started",
-          "pages": ["quickstart"]
-        }
-      ]
-    }
-  ]
-}
-```
+### Agent Capabilities
+- **Natural language understanding**: Interprets complex instructions in plain English
+- **Context awareness**: Remembers previous interactions and maintains project context
+- **Decision making**: Can make autonomous decisions within defined parameters
+- **Tool orchestration**: Coordinates multiple tools and systems to complete tasks
 
-```json Nested Navigation
-"navigation": {
-  "tabs": [
-    {
-      "tab": "Docs",
-      "groups": [
-        {
-          "group": "Getting Started",
-          "pages": [
-            "quickstart",
-            {
-              "group": "Nested Reference Pages",
-              "pages": ["nested-reference-page"]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
+## Background Agent
 
-</CodeGroup>
+When working on long-running tasks, Kafka operates as a background agent, continuing work even when you're not actively monitoring the conversation.
 
-## Folders
+### Background Processing
+- **Autonomous execution**: Continues working on tasks without constant supervision
+- **Progress reporting**: Provides regular updates on task completion status
+- **Error handling**: Identifies and resolves issues independently when possible
+- **Notification system**: Alerts you when tasks are complete or require attention
 
-Simply put your MDX files in folders and update the paths in `docs.json`.
+## Workflows
 
-For example, to have a page at `https://yoursite.com/your-folder/your-page` you would make a folder called `your-folder` containing an MDX file called `your-page.mdx`.
+Workflows define the automated processes that Kafka can execute. They combine multiple steps, tools, and decision points into cohesive automation sequences.
 
-<Warning>
+### Workflow Components
+- **Triggers**: Events or conditions that start a workflow
+- **Actions**: Individual steps Kafka performs
+- **Conditions**: Logic that determines the next steps
+- **Integrations**: Connections to external tools and systems
 
-You cannot use `api` for the name of a folder unless you nest it inside another folder. Mintlify uses Next.js which reserves the top-level `api` folder for internal server calls. A folder name such as `api-reference` would be accepted.
+## Playbooks
 
-</Warning>
+Playbooks are standardized procedures that guide Kafka's responses to common scenarios. They ensure consistent handling of recurring situations.
 
-```json Navigation With Folder
-"navigation": {
-  "tabs": [
-    {
-      "tab": "Docs",
-      "groups": [
-        {
-          "group": "Group Name",
-          "pages": ["your-folder/your-page"]
-        }
-      ]
-    }
-  ]
-}
-```
+### Playbook Structure
+- **Scenario identification**: Conditions that trigger the playbook
+- **Step-by-step procedures**: Clear instructions for handling the situation
+- **Decision trees**: Logic for handling variations and edge cases
+- **Success criteria**: How to determine when the task is complete
 
-## Hidden pages
+## Global Instructions
 
-MDX files not included in `docs.json` will not show up in the sidebar but are accessible through the search bar and by linking directly to them.
+Global Instructions provide overarching rules and context that Kafka follows across all interactions, ensuring consistent behavior aligned with your organization's standards.
+
+### Instruction Types
+- **Behavioral guidelines**: How Kafka should communicate and operate
+- **Security policies**: Data handling and access restrictions
+- **Business rules**: Company-specific procedures and constraints
+- **Compliance requirements**: Regulatory and legal guidelines

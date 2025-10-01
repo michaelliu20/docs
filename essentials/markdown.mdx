@@ -1,88 +1,88 @@
 ---
-title: 'Markdown syntax'
-description: 'Text, title, and styling in standard markdown'
-icon: 'text-size'
+title: 'Workflows'
+hideTitle: true
 ---
 
-## Titles
+Workflows are automated sequences that Kafka executes autonomously when triggered by an event.
 
-Best used for section headers.
+<img
+  src="/images/Workflow Editing.gif"
+  alt="Creating a workflow in Kafka"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
+/>
 
-```md
-## Titles
+## How Workflows Work
+
+Every workflow has two parts:
+
+1. **Trigger** — What starts the workflow (time-based, app-based, or webhook-based)
+2. **Instructions** — What Kafka does once triggered
+
+Once activated, Kafka executes your instructions automatically without manual intervention.
+
+## Trigger Types
+
+**Time-based**
+```text
+Daily at 9am
+Every Monday at 10am
+Hourly between 9am-5pm
 ```
 
-### Subtitles
-
-Best used for subsection headers.
-
-```md
-### Subtitles
+**App-based**
+```text
+When email arrives in Gmail
+When new candidate added to Greenhouse
+When Slack message contains keyword
 ```
 
-<Tip>
-
-Each **title** and **subtitle** creates an anchor and also shows up on the table of contents on the right.
-
-</Tip>
-
-## Text formatting
-
-We support most markdown formatting. Simply add `**`, `_`, or `~` around text to format it.
-
-| Style         | How to write it   | Result          |
-| ------------- | ----------------- | --------------- |
-| Bold          | `**bold**`        | **bold**        |
-| Italic        | `_italic_`        | _italic_        |
-| Strikethrough | `~strikethrough~` | ~strikethrough~ |
-
-You can combine these. For example, write `**_bold and italic_**` to get **_bold and italic_** text.
-
-You need to use HTML to write superscript and subscript text. That is, add `<sup>` or `<sub>` around your text.
-
-| Text Size   | How to write it          | Result                 |
-| ----------- | ------------------------ | ---------------------- |
-| Superscript | `<sup>superscript</sup>` | <sup>superscript</sup> |
-| Subscript   | `<sub>subscript</sub>`   | <sub>subscript</sub>   |
-
-## Linking to pages
-
-You can add a link by wrapping text in `[]()`. You would write `[link to google](https://google.com)` to [link to google](https://google.com).
-
-Links to pages in your docs need to be root-relative. Basically, you should include the entire folder path. For example, `[link to text](/writing-content/text)` links to the page "Text" in our components section.
-
-Relative links like `[link to text](../text)` will open slower because we cannot optimize them as easily.
-
-## Blockquotes
-
-### Singleline
-
-To create a blockquote, add a `>` in front of a paragraph.
-
-> Dorothy followed her through many of the beautiful rooms in her castle.
-
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
+**Webhook-based**
+```text
+When external API call received
+When form submitted on website
+When payment processed
 ```
 
-### Multiline
+## Example Workflow
 
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+```yaml
+name: Daily Inbox Call
+trigger: daily at 9 am
 
-```md
-> Dorothy followed her through many of the beautiful rooms in her castle.
->
-> The Witch bade her clean the pots and kettles and sweep the floor and keep the fire fed with wood.
+Content:
+1. Scan through my email using @gmail for all emails in the last day
+2. Summarize everything and the most important ones to call
+3. Call me at [number], informing me of everything.
 ```
 
-### LaTeX
+This workflow runs every morning, scans your inbox, and calls you with a summary — completely autonomously.
 
-Mintlify supports [LaTeX](https://www.latex-project.org) through the Latex component.
+## Best Practices
 
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
+**Start simple**
+Begin with single-action workflows before building complex multi-step processes.
 
-```md
-<Latex>8 x (vk x H1 - H2) = (0,1)</Latex>
-```
+**Be specific with triggers**
+"When email from client@company.com arrives" is better than "When email arrives."
+
+**Test before deploying**
+Run workflows manually first to verify they work as expected.
+
+**Monitor and iterate**
+Check workflow execution history and refine based on real performance.
+
+**Use integrations**
+Reference tools with `@gmail`, `@slack`, `@clickup` to connect workflows to your systems.
+
+## When to Use Workflows
+
+Use workflows for:
+- **Recurring tasks** — Daily summaries, weekly reports, monthly cleanups
+- **Event responses** — Auto-reply to emails, notify on form submissions
+- **Data syncing** — Keep systems in sync automatically
+- **Scheduled actions** — Send reminders, generate reports, run backups
+
+Don't use workflows for:
+- One-off tasks (just ask Kafka directly)
+- Complex decision-making requiring human judgment
+- Tasks that need real-time human collaboration (use Playbooks instead)

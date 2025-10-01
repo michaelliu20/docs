@@ -1,35 +1,92 @@
 ---
-title: 'Code blocks'
-description: 'Display inline code and code blocks'
-icon: 'code'
+title: 'Playbooks'
+hideTitle: true
 ---
 
-## Inline code
+Playbooks are structured guides that Kafka follows for repeated, semi-structured tasks. They're otherwise known as SOPs (standard operating procedures).
 
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
+<img
+  src="/images/Playbook Usage.gif"
+  alt="Using a playbook in Kafka"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
+/>
 
+## How Playbooks Work
+
+Every playbook has an **Activation Criteria** — a situation that triggers Kafka to use the playbook automatically.
+
+Playbooks can also be explicitly requested:
+- **By name:** "Use the Daily Pipeline Update playbook"
+- **With @:** Type `@playbook-name` in any text editor (threads, workflows, or other playbooks)
+
+## Referencing Playbooks
+
+Playbooks can be called from multiple places:
+
+**In conversations:**
+```text
+"Use the @Structure-Email playbook to draft a message to our investors"
 ```
-To denote a `word` or `phrase` as code, enclose it in backticks (`).
+
+**In workflows:**
+<img
+  src="/images/Playbook Being Used In Workflow.gif"
+  alt="Playbook being referenced in a workflow"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
+/>
+
+## Example Playbook
+
+```yaml
+name: Structure Professional Email
+activation_criteria: When drafting an external email to executives or clients
+
+Format:
+1. Subject: Clear and action-oriented (5-8 words max)
+2. Greeting: Use "Hi [First Name]," for warm contacts, "Hello [Full Name]," for formal
+3. Opening: State purpose in first sentence
+4. Body: Use bullet points for multiple items, keep paragraphs to 2-3 sentences
+5. Closing: Include clear next steps or call-to-action
+6. Signature: Use professional signature with title and contact info
+
+Tools: @gmail, @google-calendar
 ```
 
-## Code blocks
+## Best Practices
 
-Use [fenced code blocks](https://www.markdownguide.org/extended-syntax/#fenced-code-blocks) by enclosing code in three backticks and follow the leading ticks with the programming language of your snippet to get syntax highlighting. Optionally, you can also write the name of your code after the programming language.
+**Define clear activation criteria**
+Be specific about when the playbook should be used. "When candidate passes phone screen" is better than "During recruiting."
 
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
+**Keep instructions actionable**
+Each step should be clear and executable. Avoid vague guidance.
 
-````md
-```java HelloWorld.java
-class HelloWorld {
-    public static void main(String[] args) {
-        System.out.println("Hello, World!");
-    }
-}
-```
-````
+**Reference integrations**
+Use `@integration` format to specify which tools Kafka should use.
+
+**Make them reusable**
+Write playbooks for processes you repeat often, not one-off tasks.
+
+**Nest playbooks**
+Reference other playbooks using `@playbook-name` to build complex processes from simple building blocks.
+
+## When to Use Playbooks
+
+Use playbooks for:
+- **Repeated processes** — Tasks you do the same way each time
+- **Step-by-step procedures** — Clear sequences that need to be followed in order
+- **Quality control** — Ensuring consistency across similar tasks
+- **Knowledge transfer** — Codifying how things should be done
+
+Don't use playbooks for:
+- Fully autonomous tasks (use Workflows instead)
+- One-time tasks (just ask Kafka directly)
+- Simple single-step actions (not worth the overhead)
+
+## Playbooks vs Workflows
+
+| | Playbooks | Workflows |
+|---|---|---|
+| **Trigger** | Situation-based or on-demand | Event, time, or webhook |
+| **Execution** | Semi-structured, collaborative | Fully autonomous |
+| **Use case** | SOPs, repeated procedures | Background automations |
+| **Reference** | `@playbook-name` anywhere | Cannot be referenced |

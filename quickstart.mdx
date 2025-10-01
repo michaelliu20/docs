@@ -1,80 +1,309 @@
 ---
 title: "Quickstart"
-description: "Start building awesome documentation in minutes"
 ---
 
-## Get started in three steps
+# Creating Your First AI Employee with Kafka
 
-Get your documentation site running locally and make your first customization.
+This quickstart will walk you through creating your first AI Employee using Kafka's core features. By the end, you'll understand how to set up Workflows, Playbooks, Integrations, and Tools to power your employee.
 
-### Step 1: Set up your local environment
+## Step 1: Choose Your AI Employee Template
 
 <AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
+  <Accordion title="AI Executive Assistant" icon="briefcase" defaultOpen>
+    An AI Employee that manages your inbox, calendar, and communications.
     
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
+    **You'll learn to build:**
+    - Daily email summary with phone call workflow (9am trigger)
+    - Professional email formatting playbook
+    - Gmail and Google Calendar integrations
   </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
+  
+  <Accordion title="AI Recruiter" icon="users">
+    An AI Employee that finds candidates and tracks your recruiting pipeline.
     
-    <Tip>Your preview updates automatically as you edit files.</Tip>
+    **You'll learn to build:**
+    - Daily candidate outreach workflow (10am trigger)
+    - Recruiting pipeline update playbook
+    - Apollo and Greenhouse integrations
+  </Accordion>
+  
+  <Accordion title="AI Project Manager" icon="list-check">
+    An AI Employee that syncs tasks and coordinates team work.
+    
+    **You'll learn to build:**
+    - Daily Slack-to-task sync workflow (5pm trigger)
+    - Add task to ClickUp playbook
+    - Slack and ClickUp/Linear integrations
   </Accordion>
 </AccordionGroup>
 
-### Step 2: Deploy your changes
+Expand one of these templates to see role-specific examples throughout this guide.
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
+## Step 2: Open Your Employee Home Page
+
+Navigate to your Kafka Employee Home Page. This is your control center for building, customizing, and managing your AI Employee.
+
+<img
+  src="/images/Kafka Home Screen.png"
+  alt="Kafka Employee Home Page"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
+/>
+
+## Step 3: Define Kafka's Role with Global Instructions
+
+The Global Instructions are where you set your AI Employee's personality, boundaries, and always-on knowledge.
+
+Go to: **My Kafka → Global Instructions**
+
+<img
+  src="/images/Kafka Global Instructions.png"
+  alt="Kafka Global Instructions Template"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
+/>
+
+Fill out the pre-made template to define your employee's mission, style, and constraints.
+
+**Examples:**
+
+<div className="ml-6">
+
+<Tabs>
+  <Tab title="Executive Assistant">
+```text
+You are my AI Executive Assistant. 
+
+Always respond politely and concisely. 
+
+Prioritize my calendar, task deadlines, and external communications. 
+
+Defer to human input for financial approvals.
+```
+  </Tab>
+  <Tab title="Recruiter">
+```text
+You are my AI Recruiter. 
+
+Screen candidates based on job requirements and schedule interviews automatically.
+
+Maintain a professional tone. 
+
+Always verify candidate details before proceeding with outreach.
+```
+  </Tab>
+  <Tab title="Project Manager">
+```text
+You are my AI Project Manager. 
+
+Track project timelines, coordinate team tasks, and flag potential delays. 
+
+Maintain clear communication with stakeholders. 
+
+Escalate critical blockers immediately.
+```
+  </Tab>
+</Tabs>
+
+</div>
+
+This ensures your Kafka Employee consistently operates with the right framing.
+
+## Step 4: Add Integrations
+
+Integrations connect your Kafka Employee with the tools and data sources it needs.
+
+Go to: **My Kafka → Integrations**
+
+<img
+  src="/images/Integrations.gif"
+  alt="Kafka Integrations Panel"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
+/>
+
+Connect the integrations your AI Employee needs:
+
+<Tabs>
+  <Tab title="Executive Assistant">
+    - **Gmail** — for email scanning and management
+    - **Google Calendar** — for scheduling and meeting coordination
+  </Tab>
+  <Tab title="Recruiter">
+    - **Apollo** — for people and company search
+    - **Greenhouse** — for ATS data
+  </Tab>
+  <Tab title="Project Manager">
+    - **Slack** — for scanning messages and team communication
+    - **ClickUp or Linear** — for task and project management
+  </Tab>
+</Tabs>
+
+Use `@[integration]` to reference integrations from within workflows and playbooks.
+
+## Step 5: Deploy to Slack (Optional)
+
+Connect Kafka to Slack so your team can interact with your AI Employee directly in your workspace.
+
+> **Note:** Deploying to Slack requires upgrading to the $25 Starter plan.
+
+Go to: **My Kafka → Connection**
+
+<img
+  src="/images/Slack My Kafka.png"
+  alt="Kafka Slack Connection"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
+/>
+
+Add Slack as a connection method to enable:
+- Direct messaging with Kafka in Slack
+- Channel mentions and interactions
+- Real-time notifications and updates
+- Team collaboration with your AI Employee
+
+<img
+  src="/images/slack message.gif"
+  alt="Messaging Kafka in Slack"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
+/>
+
+## Step 6: Build Workflows
+
+Workflows run on a trigger, which can be:
+
+- **App-based** — triggered by events in connected tools (e.g., new email, calendar event)
+- **Time-based** — triggered on a schedule (e.g., daily at 9am, weekly on Monday)
+- **Webhook-based** — triggered by external API calls
+
+<img
+  src="/images/Workflow Editing.gif"
+  alt="Kafka Workflows Interface"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
+/>
+
+Once triggered, Kafka performs a set of instructions you define, executing actions autonomously without manual intervention.
+
+<Tabs>
+  <Tab title="Executive Assistant">
+    ```yaml
+    name: Daily Inbox Call
+    trigger: daily at 9 am
     
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+    Content:
+    1. Scan through my email using @gmail for all emails in the last day
+    2. Summarize everything and the most important ones to call
+    3. Call me at [number], informing me of everything.
+    ```
+  </Tab>
+  <Tab title="Recruiter">
+    ```yaml
+    name: Daily Candidate Outreach
+    trigger: daily at 10 am
+    
+    Content:
+    1. Use @apollo to find people matching [profile]
+    2. Send them an outreach message
+    ```
+  </Tab>
+  <Tab title="Project Manager">
+    ```yaml
+    name: Daily Task Sync
+    trigger: daily at 5 pm
+    
+    Content:
+    1. Scan through Slack to search for any new items to add to our project management software
+    2. Add it to @linear or @clickup
+    ```
+  </Tab>
+</Tabs>
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+## Step 7: Create Playbooks
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
+Playbooks are structured guides that Kafka follows for repeated, semi-structured tasks. They're otherwise known as SOPs (standard operating procedures).
 
-### Step 3: Go live
+Every playbook has an **Activation Criteria** — a situation that, when encountered, prompts Kafka to use the playbook. Playbooks can also be explicitly requested by name or by using `@` inside text editors.
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+<img
+  src="/images/Playbook Usage.gif"
+  alt="Using a playbook in Kafka"
+  className="rounded-lg border border-gray-200 dark:border-gray-800"
+/>
 
-## Next steps
+**Examples:**
 
-Now that you have your docs running, explore these key features:
+<Tabs>
+  <Tab title="Executive Assistant">
+    ```yaml
+    name: Structure Professional Email
+    activation_criteria: When drafting an external email to executives or clients
+    
+    Format:
+    1. Subject: Clear and action-oriented (5-8 words max)
+    2. Greeting: Use "Hi [First Name]," for warm contacts, "Hello [Full Name]," for formal
+    3. Opening: State purpose in first sentence
+    4. Body: Use bullet points for multiple items, keep paragraphs to 2-3 sentences
+    5. Closing: Include clear next steps or call-to-action
+    6. Signature: Use professional signature with title and contact info
+    
+    Tools: @gmail, @google-calendar
+    ```
+  </Tab>
+  <Tab title="Recruiter">
+    ```yaml
+    name: Daily Recruiting Pipeline Update
+    activation_criteria: When asked for pipeline status or daily recruiting summary
+    
+    Content:
+    1. Pull data from @greenhouse for all active requisitions
+    2. Summarize by role:
+       - Total candidates in pipeline
+       - Candidates by stage (Sourced, Screening, Interview, Offer)
+       - Candidates moved forward in last 24 hours
+       - Candidates rejected in last 24 hours
+    3. Flag roles with <5 candidates in pipeline
+    4. Highlight any offers extended or accepted
+    5. Format as bulleted summary and send via Slack to #recruiting
+    
+    Tools: @apollo, @greenhouse
+    ```
+  </Tab>
+  <Tab title="Project Manager">
+    ```yaml
+    name: Add Task to ClickUp
+    activation_criteria: When a new task or action item is identified in Slack or meetings
+    
+    Instructions:
+    1. Extract task details from context
+    2. Create task in @clickup with:
+       - Name: [Clear, action-oriented task title]
+       - Description: [Context and requirements]
+       - Assignee: [Team member mentioned or default to PM]
+       - Due Date: [Extract from context or ask if unclear]
+       - Priority: [Urgent/High/Normal/Low based on context]
+       - Tags: [Project name, task type]
+       - List: [Appropriate project list or "Backlog" if unclear]
+    3. Confirm task created and share ClickUp link in original thread
+    
+    Tools: @slack, @clickup, @linear
+    ```
+  </Tab>
+</Tabs>
 
-<CardGroup cols={2}>
+## Step 8: Test and Refine
 
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
+Once your Kafka Employee is live, treat Playbooks and Workflows as living documents that need constant iteration.
 
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
+The best approach:
 
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
+1. **Deploy in real use** — Start using your AI Employee in actual work scenarios
+2. **Observe and collect feedback** — Notice where Kafka struggles or excels
+3. **Refine instructions** — Adjust Global Instructions, Workflows, and Playbooks based on real performance
+4. **Iterate continuously** — Your AI Employee improves with each refinement
 
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
+Don't expect perfection on the first try. The most effective AI Employees are refined over weeks of real-world use.
 
-</CardGroup>
+## Get Support
 
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>
+We're constantly adding new features and want to personally help our first customers.
+
+- **Email:** [michael@usebrainbase.xyz](mailto:michael@usebrainbase.xyz) for personal support
+- **In-app:** Use the support widget in the app for quick help
+
+Your feedback helps us build a better product for everyone.
