@@ -18,18 +18,18 @@
             "pages": [
               "index",
               "quickstart",
-              "essentials/settings"
+              "core-concepts"
             ]
           },
           {
             "group": "Core Concepts",
             "pages": [
-              "ai-tools/windsurf",
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/reusable-snippets",
-              "essentials/images",
-              "ai-tools/cursor"
+              "tools",
+              "workflows",
+              "playbooks",
+              "integrations",
+              "global-instructions",
+              "connections"
             ]
           },
           {
@@ -39,7 +39,7 @@
           {
             "group": "Troubleshooting",
             "pages": [
-              "development"
+              "best-practices"
             ]
           }
         ]
@@ -87,6 +87,7 @@
   "footer": {
     "socials": {
       "x": "https://x.com/BrainbaseHQ",
+      "github": "https://github.com/BrainbaseHQ/",
       "linkedin": "https://www.linkedin.com/company/usebrainbase/"
     }
   }
